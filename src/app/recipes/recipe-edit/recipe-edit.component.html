@@ -1,0 +1,60 @@
+<div class="row"> 
+  <div class="1"></div>
+  <div class="col-md-8">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+      
+      <br>
+      <button class="btn btn-success" type="submit" [disabled]="!recipeForm.valid">Save</button>
+      <span style="padding-right: 15px;"></span>
+      <button class="btn btn-danger" type="button" (click)="onCancel()">Cancel</button>
+      
+      <br><br>
+      <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text"
+          class="form-control"
+          id="name"
+          formControlName="name"
+          name="name">
+      </div>
+      <div class="form-group">
+        <label for="imagePath">Image URL</label>
+        <input type="text"
+        class="form-control"
+        id="imagePath"
+        formControlName="imagePath"
+        name="imagePath"
+        #imagePath>
+      </div>
+      <div class="row">
+         <div class="col-md-12">
+              <img [src]="imagePath.value" class="img-fluid" style="max-width: 100%; height: auto;">
+         </div>
+      </div>
+      <div class="form-group">
+          <label for="description">Description</label>
+          <textarea 
+              class="form-control" 
+              name="description" 
+              id="description" 
+              formControlName="description"
+              cols="30" 
+              rows="6">
+          </textarea>
+      </div>
+
+      <div class="form-inline" formArrayName="ingredients">
+          <div *ngFor="let ingredientCtrl of recipeForm.get('ingredients')['controls']; let i = index"
+              [formGroupName]="i" style="margin-top: 10px;">
+              <input type="text" class="form-control" formControlName="name" style="margin-right: 5px;">
+              <input type="number" class="form-control"  formControlName="amount" style="margin-right: 5px;">
+              <button type="button" class="btn btn-danger" (click)="onDeleteIngredient(i)" >X</button>
+          </div>
+      </div>
+      <div style="margin-top: 10px;">
+        <button type="button" class="btn btn-success" (click)="onAddIngredient()">Add ingredient</button>
+      </div>      
+
+    </form>
+  </div>
+</div>
