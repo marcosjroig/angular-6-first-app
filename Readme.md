@@ -1,7 +1,3 @@
-## In the Command line run:
+## Angular 6 web page
 
-NPM install
-
-## This will Install the Angular CLI
-
-Note: you need to have Node installed in your PC
+## Under construction. I will have interesting code to share very shortly :-)
